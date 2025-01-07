@@ -11,11 +11,7 @@ The background will have relatively high values of green component and the varia
 We can then estimate the particular range for the three components by looking at the histogram , and remove all the points with color components in that particular range.
 
 ### A Slightly smarter approach 
-Our previous approach doesn't account for the fact that in the background the green component will be higher and the red and blue components will be lower. 
-
-     So we give an upper bound for the red and blue component along with the lower bound for the green component. 
-
-     Using this fact we can give a smarter bound for example red and blue component < 0.5 and green component > 0.35 works pretty well.
+Our previous approach doesn't account for the fact that in the background the green component will be higher and the red and blue components will be lower. So we give an upper bound for the red and blue component along with the lower bound for the green component. Using this fact we can give a smarter bound for example red and blue component < 0.5 and green component > 0.35 works pretty well.
 ### A different implementation 
 Instead of taking  bounds for red, blue and green components why don't we bound the ratios g/r and g/b , we can say they will be surely more than 1 for the background as it is green and by observation we have found out that if g/r and g/b values are greater than 1.2(call it the super bound) then, it works quite well.
              Also, we have noticed that we get the best possible images by varying the super bound between 1 and 2 , that means we check each image for super bounds in {1,1.1,1.2,...,2} .We also get 1.2 as the super bound most of the time. Start implementing with 1.2, if excess foreground is removed , a value greater than 1.2 works and if green background is left behind(very rare case for our sample), a value less than 1.2 works.
